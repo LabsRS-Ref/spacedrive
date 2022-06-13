@@ -88,6 +88,7 @@ function App() {
 const root = createRoot(document.getElementById('root')!);
 
 root.render(
+	// 严格模式渲染
 	<React.StrictMode>
 		<App />
 	</React.StrictMode>
