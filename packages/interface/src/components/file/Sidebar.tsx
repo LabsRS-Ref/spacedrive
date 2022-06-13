@@ -8,9 +8,8 @@ import React, { useContext } from 'react';
 import { NavLink, NavLinkProps } from 'react-router-dom';
 
 import { AppPropsContext } from '../../App';
-import { ReactComponent as FolderWhite } from '../../assets/svg/folder-white.svg';
-import { ReactComponent as Folder } from '../../assets/svg/folder.svg';
 import { useNodeStore } from '../device/Stores';
+import { Folder } from '../icons/Folder';
 import RunningJobsWidget from '../jobs/RunningJobsWidget';
 import { MacTrafficLights } from '../os/TrafficLights';
 import { DefaultProps } from '../primitive/types';
@@ -56,14 +55,14 @@ export const MacWindowControlsSpace: React.FC<{
 };
 
 export function MacWindowControls() {
-	const appPropsContext = useContext(AppPropsContext);
+	const appProps = useContext(AppPropsContext);
 
 	return (
 		<MacWindowControlsSpace>
 			<MacTrafficLights
-				onClose={appPropsContext?.onClose}
-				onFullscreen={appPropsContext?.onFullscreen}
-				onMinimize={appPropsContext?.onMinimize}
+				onClose={appProps?.onClose}
+				onFullscreen={appProps?.onFullscreen}
+				onMinimize={appProps?.onMinimize}
 				className="z-50 absolute top-[13px] left-[13px]"
 			/>
 		</MacWindowControlsSpace>
@@ -73,7 +72,7 @@ export function MacWindowControls() {
 export const Sidebar: React.FC<SidebarProps> = (props) => {
 	const { isExperimental } = useNodeStore();
 
-	const appPropsContext = useContext(AppPropsContext);
+	const appProps = useContext(AppPropsContext);
 	const { data: locations } = useBridgeQuery('SysGetLocations');
 	const { data: clientState } = useBridgeQuery('NodeGetState');
 
@@ -89,11 +88,10 @@ export const Sidebar: React.FC<SidebarProps> = (props) => {
 
 	return (
 		<div className="flex flex-col flex-grow-0 flex-shrink-0 w-48 min-h-full px-2.5 overflow-x-hidden overflow-y-scroll border-r border-gray-100 no-scrollbar bg-gray-50 dark:bg-gray-850 dark:border-gray-600">
-			{appPropsContext?.platform === 'browser' &&
-			window.location.search.includes('showControls') ? (
+			{appProps?.platform === 'browser' && window.location.search.includes('showControls') ? (
 				<MacWindowControls />
 			) : null}
-			{appPropsContext?.platform === 'macOS' ? <MacWindowControlsSpace /> : null}
+			{appProps?.platform === 'macOS' ? <MacWindowControlsSpace /> : null}
 
 			<Dropdown
 				buttonProps={{
@@ -172,7 +170,7 @@ export const Sidebar: React.FC<SidebarProps> = (props) => {
 										)}
 									>
 										<div className="w-[18px] mr-2 -mt-0.5">
-											<FolderWhite className={clsx(!isActive && 'hidden')} />
+											<Folder className={clsx(!isActive && 'hidden')} white />
 											<Folder className={clsx(isActive && 'hidden')} />
 										</div>
 										{location.name}
@@ -186,7 +184,7 @@ export const Sidebar: React.FC<SidebarProps> = (props) => {
 
 				<button
 					onClick={() => {
-						appPropsContext?.openDialog({ directory: true }).then((result) => {
+						appProps?.openDialog({ directory: true }).then((result) => {
 							createLocation({ path: result });
 						});
 					}}
