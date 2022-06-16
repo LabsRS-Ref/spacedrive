@@ -58,9 +58,7 @@ export function Footer() {
 						Mission
 					</FooterLink>
 					<FooterLink link="/changelog">Changelog</FooterLink>
-					<div className="opacity-50 pointer-events-none">
-						<FooterLink link="#">Blog</FooterLink>
-					</div>
+					<FooterLink link="https://blog.spacedrive.com">Blog</FooterLink>
 				</div>
 				<div className="flex flex-col col-span-1 space-y-2 pointer-events-none">
 					<h3 className="mb-1 text-xs font-bold uppercase">Downloads</h3>
@@ -75,7 +73,7 @@ export function Footer() {
 					<FooterLink link="https://github.com/spacedriveapp/spacedrive/tree/main/docs">
 						Documentation
 					</FooterLink>
-					<FooterLink link="https://github.com/spacedriveapp/spacedrive/tree/main/docs/developer/contributing.md">
+					<FooterLink link="https://github.com/spacedriveapp/spacedrive/blob/main/CONTRIBUTING.md">
 						Contribute
 					</FooterLink>
 					<div className="opacity-50 pointer-events-none">
