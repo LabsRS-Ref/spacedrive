@@ -1,0 +1,10 @@
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg/master/scripts/vcpkg.schema.json",
+  "name": "window-core",
+  "version": "0.0.1",
+  "dependencies": [ "ffmpeg", "llvm" ],
+  "builtin-baseline":"3426db05b996481ca31e95fff3734cf23e0f51bc",
+  "overrides": [
+    { "name": "llvm", "version": "13.0.0" }
+  ]
+}
