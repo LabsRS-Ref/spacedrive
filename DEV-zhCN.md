@@ -1,5 +1,7 @@
 # 二次开发说明
 
+## NODE 依赖说明
+
 ## Windows 开发
 
 - 安装 [VCPKG](https://vcpkg.org/), 并设置环境VCPKG_ROOT 环境变量
