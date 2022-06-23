@@ -1,5 +1,11 @@
 # 二次开发说明
 
+## 包依赖说明
+
+- `@sd/config`: `packages\config\package.json`, 基础配置文件，涉及ts, eslint 等
+- `@sd/client`: `packages\client\package.json`, 客户端抽象代码
+- `@sd/interface`: `packages\interface\package.json`, 应用界面代码
+
 ## NODE 依赖说明
 
 ## Windows 开发
