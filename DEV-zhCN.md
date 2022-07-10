@@ -1,5 +1,27 @@
 # 二次开发说明
 
+## 项目准备
+
+- `$ git clone https://github.com/spacedriveapp/spacedrive`
+- `$ cd spacedrive`
+- For Linux or MacOS users run: `./.github/scripts/setup-system.sh`
+  - This will install FFMPEG and any other required dependencies for Spacedrive to build.
+- `$ pnpm i`
+- `$ pnpm prep` - Runs all necessary codegen & builds required dependencies.
+
+## 项目启动
+
+To run the landing page
+
+- `$ pnpm web dev` - runs the web app for the embed
+- `$ pnpm landing dev`
+
+## 使用的技术说明
+
+- `Prisma`: [https://www.prisma.io/](https://www.prisma.io/) ORM 对象关系映射框架， [https://zhuanlan.zhihu.com/p/142607078](https://zhuanlan.zhihu.com/p/142607078)
+
+
+
 ## 包依赖说明
 
 - `@sd/config`: `packages\config\package.json`, 基础配置文件，涉及ts, eslint 等
