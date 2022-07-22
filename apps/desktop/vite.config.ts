@@ -7,7 +7,7 @@ import { name, version } from './package.json';
 // https://vitejs.dev/config/
 export default defineConfig({
 	server: {
-		port: 8001
+		port: 38001
 	},
 	plugins: [
 		react({

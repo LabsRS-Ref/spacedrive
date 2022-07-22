@@ -24,7 +24,9 @@ export function AppLayout() {
 				hasWindowBorder && 'border border-gray-200 dark:border-gray-500'
 			)}
 		>
+			{/* 侧边栏 */}
 			<Sidebar />
+			{/* 内容器 */}
 			<div className="relative flex w-full h-screen max-h-screen bg-white dark:bg-gray-650">
 				<Outlet />
 			</div>

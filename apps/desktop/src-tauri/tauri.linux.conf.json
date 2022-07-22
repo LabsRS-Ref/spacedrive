@@ -5,7 +5,8 @@
 	},
 	"build": {
 		"distDir": "../dist",
-		"devPath": "http://localhost:8001",
+
+		"devPath": "http://localhost:38001",
 		"beforeDevCommand": "pnpm exec vite --clearScreen=false",
 		"beforeBuildCommand": "pnpm exec vite build"
 	},
