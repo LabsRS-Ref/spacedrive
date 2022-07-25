@@ -1,6 +1,6 @@
 # 二次开发说明
 
-## 项目准备
+## 1. 项目准备
 
 - `$ git clone https://github.com/spacedriveapp/spacedrive`
 - `$ cd spacedrive`
@@ -9,31 +9,38 @@
 - `$ pnpm i`
 - `$ pnpm prep` - Runs all necessary codegen & builds required dependencies.
 
-## 项目启动
+## 2. 项目启动
 
 To run the landing page
 
 - `$ pnpm web dev` - runs the web app for the embed
 - `$ pnpm landing dev`
 
-## 使用的技术说明
+## 3. 使用的技术说明
 
 - `Prisma`: [https://www.prisma.io/](https://www.prisma.io/) ORM 对象关系映射框架， [https://zhuanlan.zhihu.com/p/142607078](https://zhuanlan.zhihu.com/p/142607078)
 
-
-
-## 包依赖说明
+## 4. NPM包依赖说明
 
 - `@sd/config`: `packages\config\package.json`, 基础配置文件，涉及ts, eslint 等
 - `@sd/client`: `packages\client\package.json`, 客户端抽象代码
 - `@sd/interface`: `packages\interface\package.json`, 应用界面代码
 
-## NODE 依赖说明
+## 5. NODE 依赖说明
 
-## Windows 开发
+## 6. Cargo 依赖说明
 
-- 安装 [VCPKG](https://vcpkg.org/), 并设置环境VCPKG_ROOT 环境变量
-- 设置环境变量：
+``` bash
+# 更新依赖
+$ cargo update
+```
+
+## 7. Windows 开发
+
+### 7.1. VCPKG 环境搭建
+
+- 第一步：安装 [VCPKG](https://vcpkg.org/), 并设置环境VCPKG_ROOT 环境变量
+- 第二步：设置环境变量：
 
   ``` ps1
   $Env:VCPKG_DEFAULT_BINARY_CACHE = "G:\_sdks\vcpkg-binary-cache"
@@ -58,7 +65,7 @@ To run the landing page
     vcpkg x-history llvm
     ```
 
-- 根据 `env > windows` 目录中的vcpkg.json文件，复制存放到 `G:\_sdks\vcpkg_cargo` 目录.参照：<https://github.com/microsoft/vcpkg/blob/master/docs/users/manifests.md#cmake-integration>
+- 第三步：根据 `env > windows` 目录中的vcpkg.json文件，复制存放到 `G:\_sdks\vcpkg_cargo` 目录.参照：<https://github.com/microsoft/vcpkg/blob/master/docs/users/manifests.md#cmake-integration>
 
   ``` json5
   // ~/vcpkg.json
@@ -74,24 +81,31 @@ To run the landing page
   }
   ```
 
-- （可选）从Windows菜单中，启动 `x86_x64 Cross Tools Command Prompt for VS 2017` 终端程序
-- (必备) 打开终端Shell（选用可选的VS终端程序或者默认的CMD，Powershell都可以），执行以下命令
+- 第四步（可选）从Windows菜单中，启动 `x86_x64 Cross Tools Command Prompt for VS 2017` 终端程序
+- 第五步：(必备) 打开终端Shell（选用可选的VS终端程序或者默认的CMD，Powershell都可以），执行以下命令
+
+  目的：安装依赖包
 
   ``` cmd
+  // 定位到指定编译目录
   cd G:\_sdks\vcpkg_cargo
+  // 回车
+  G:
 
   // 设置二进制缓存目录
   set VCPKG_DEFAULT_BINARY_CACHE=G:\_sdks\vcpkg-binary-cache
 
-  // `vcpkg install --triplet=x64-windows` 安装依赖
+  // `vcpkg install --triplet=x64-windows` 安装依赖。 （根据G:\_sdks\vcpkg_cargo\vcpkg.json 文件描述内容自动安装）
   vcpkg install --triplet=x64-windows
   ```
 
-- 在新的终端程序中(`CMD`或者`Powershell`)，执行如下环境变量设置
+### 7.2. 设置环境变量，编译Rust子项目
+
+- 在新的终端程序中(`CMD`或者`Powershell`, 普通终端就可以，不需要非得是`x86_x64 Cross Tools Command Prompt for VS 2017` 终端程序)，执行如下环境变量设置
 
   ``` cmd
   ##############################################################################
-  # VCPKG 环境变量设置
+  # 第一步：VCPKG 环境变量设置
 
   set VCPKG_MANIFEST_DIR=G:\_sdks\vcpkg_cargo
   set VCPKG_MANIFEST_MODE=ON
@@ -101,20 +115,21 @@ To run the landing page
   set PATH=%VCPKG_ROOT%;%PATH%
 
 
-  # 终端集成
+  # 第二步：终端集成
   set VCPKG_TARGET_TRIPLET=x64-windows
   set VCPKG_TARGET_ARCH=x64
   set VCPKG_CARGO_ROOT=G:\_sdks\vcpkg_cargo\vcpkg_installed
   vcpkg list --x-install-root=%VCPKG_CARGO_ROOT%
   vcpkg integrate install --x-install-root=%VCPKG_CARGO_ROOT%
 
-  # 设置依赖包的环境变量
+  # 第三步: 设置依赖包的环境变量
   set FFMPEG_DIR=%VCPKG_CARGO_ROOT%\%VCPKG_TARGET_TRIPLET%
   set LIBCLANG_PATH=%VCPKG_CARGO_ROOT%\%VCPKG_TARGET_TRIPLET%\bin
 
+  # 第四步: 测试构建
   # 定位到本项目的`apps\desktop\src-tauri` 目录。 eg. D:\workspace\techidaily\tauri-projects\spacedrive\apps\desktop\src-tauri
   # 执行构建命令
   cargo build -vv
   ```
 
-## macOS 开发
+## 8. macOS 开发
