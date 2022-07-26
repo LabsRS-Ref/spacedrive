@@ -230,6 +230,9 @@ importers:
       ts-node: 10.8.0_w6gfxie3xfwntbz3mwbbvycbdq
       typescript: 4.7.2
 
+  packages/assets:
+    specifiers: {}
+
   packages/client:
     specifiers:
       '@sd/config': workspace:*
@@ -275,6 +278,7 @@ importers:
       '@radix-ui/react-icons': ^1.1.1
       '@radix-ui/react-progress': ^0.1.4
       '@radix-ui/react-slider': ^0.1.4
+      '@sd/assets': workspace:*
       '@sd/client': workspace:*
       '@sd/core': workspace:*
       '@sd/ui': workspace:*
@@ -339,6 +343,7 @@ importers:
       '@radix-ui/react-icons': 1.1.1_react@18.1.0
       '@radix-ui/react-progress': 0.1.4_react@18.1.0
       '@radix-ui/react-slider': 0.1.4_react@18.1.0
+      '@sd/assets': link:../assets
       '@sd/client': link:../client
       '@sd/core': link:../../core
       '@sd/ui': link:../ui
